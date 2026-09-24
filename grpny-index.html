@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Green River Pictures — Branding Films &amp; Live Event Production</title>
+<meta name="description" content="Green River Pictures — scalable production for documentary-style branding films and multicam live events.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: #F3EFE6;
+    --paper-2: #EAE4D5;
+    --ink: #14140F;
+    --ink-dim: #57584C;
+    --line: #14140F;
+    --red: #E63B2E;
+    --red-dim: #B72E23;
+  }
+  *{ box-sizing: border-box; margin:0; padding:0; }
+  html{ scroll-behavior: smooth; }
+  body{
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Work Sans', sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  img{ max-width:100%; display:block; }
+  a{ color: inherit; text-decoration: none; }
+  h1, h2, h3, .display{
+    font-family: 'Archivo Black', sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+  }
+  .mono{ font-family: 'Space Mono', monospace; }
+  .wrap{ max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+
+  header{
+    position: sticky;
+    top: 0; left: 0; right: 0;
+    z-index: 50;
+    background: var(--paper);
+    border-bottom: 3px solid var(--ink);
+  }
+  nav.wrap{ display:flex; align-items:center; justify-content:space-between; padding: 20px 32px; }
+  .brand{
+    font-family:'Archivo Black', sans-serif;
+    font-size: 17px;
+    text-transform: uppercase;
+    display:flex; align-items:center; gap:10px;
+  }
+  .brand .rec{
+    width:10px; height:10px; border-radius:50%; background: var(--red);
+    display:inline-block; animation: blink 1.6s steps(1) infinite;
+  }
+  @keyframes blink{ 50%{ opacity:0.25; } }
+  .nav-links{ display:flex; gap: 32px; list-style:none; }
+  .nav-links a{
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+    color: var(--ink);
+    padding-bottom: 3px;
+    border-bottom: 2px solid transparent;
+  }
+  .nav-links a:hover, .nav-links a:focus-visible{ border-bottom-color: var(--red); }
+  .nav-toggle{ display:none; }
+
+  .hero{
+    position: relative;
+    min-height: 88vh;
+    display:flex;
+    align-items:center;
+    overflow: hidden;
+    border-bottom: 3px solid var(--ink);
+  }
+  .hero-bg{ position:absolute; inset:0; z-index:0; background: var(--ink); }
+  .hero-bg video{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+    filter: grayscale(0.15) contrast(1.05);
+    opacity: 0.75;
+  }
+  .hero-bg::after{
+    content:"";
+    position:absolute; inset:0; z-index:1;
+    background: var(--ink);
+    opacity: 0.58;
+    pointer-events: none;
+  }
+  .vf-corner{ position:absolute; width:26px; height:26px; z-index:2; }
+  .vf-tl{ top:20px; left:20px; border-top:3px solid var(--paper); border-left:3px solid var(--paper); }
+  .vf-tr{ top:20px; right:20px; border-top:3px solid var(--paper); border-right:3px solid var(--paper); }
+  .vf-bl{ bottom:20px; left:20px; border-bottom:3px solid var(--paper); border-left:3px solid var(--paper); }
+  .vf-br{ bottom:20px; right:20px; border-bottom:3px solid var(--paper); border-right:3px solid var(--paper); }
+  .vf-tag{
+    position:absolute; z-index:2;
+    font-size:12px; letter-spacing:0.06em; color: var(--paper);
+    display:flex; align-items:center; gap:8px; font-weight:700;
+  }
+  .vf-tag.rec-tag{ top:24px; left:56px; }
+  .vf-tag.rec-tag .rec{ width:9px; height:9px; border-radius:50%; background:var(--red); animation: blink 1.4s steps(1) infinite; }
+  .vf-tag.tc{ bottom:24px; right:56px; }
+  .hero .wrap{ position:relative; z-index:3; }
+  .hero-kicker{
+    display:flex; align-items:center; gap:10px;
+    font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--paper); margin-bottom: 22px; font-weight: 600;
+  }
+  .hero-kicker .rec{
+    width:8px; height:8px; border-radius:50%; background: var(--red);
+    display:inline-block; animation: blink 1.6s steps(1) infinite;
+  }
+  .hero h1{
+    font-size: clamp(38px, 6.4vw, 78px);
+    line-height: 1;
+    margin-bottom: 28px;
+    max-width: 900px;
+    color: var(--paper);
+  }
+  .hero h1 .hl{ color: var(--red); }
+  .hero-lede{
+    font-size: clamp(16px, 1.6vw, 19px);
+    color: var(--paper);
+    max-width: 560px;
+    margin-bottom: 36px;
+    line-height: 1.6;
+  }
+  .cta-row{ display:flex; gap:16px; flex-wrap:wrap; margin-bottom: 8px; }
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    padding: 15px 28px; border: 3px solid var(--ink);
+    font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .btn-primary{ background: var(--ink); color: var(--paper); }
+  .btn-primary:hover{ background: var(--red); border-color: var(--red); }
+  .hero .btn-primary{ background: var(--red); color: var(--paper); border-color: var(--red); }
+  .hero .btn-primary:hover{ background: var(--paper); color: var(--ink); border-color: var(--paper); }
+  .hero .btn-ghost{ border-color: var(--paper); color: var(--paper); }
+  .hero .btn-ghost:hover{ background: var(--paper); color: var(--ink); }
+
+  section{ padding: 100px 0; }
+  .section-head{ display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-bottom: 56px; border-bottom: 3px solid var(--ink); padding-bottom: 28px; flex-wrap:wrap; }
+  .section-head h2{ font-size: clamp(28px, 3.8vw, 46px); }
+  .section-head p{ color: var(--ink-dim); max-width: 360px; font-size: 15px; line-height:1.6; }
+
+  .services{ display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; border: 3px solid var(--ink); }
+  .service-card{ padding: 44px; }
+  .service-card + .service-card{ border-left: 3px solid var(--ink); }
+  .service-num{ font-family:'Space Mono', monospace; font-size: 13px; color: var(--red); margin-bottom: 22px; display:block; font-weight:700; }
+  .service-card h3{ font-size: 26px; margin-bottom: 16px; text-transform: uppercase; }
+  .service-card p{ color: var(--ink-dim); font-size: 15px; line-height: 1.7; margin-bottom: 22px; }
+  .service-list{ list-style:none; display:flex; flex-direction:column; gap:10px; }
+  .service-list li{ font-size: 14px; color: var(--ink); padding-left: 22px; position: relative; }
+  .service-list li::before{ content:"→"; position:absolute; left:0; top:0; color: var(--red); font-weight:700; }
+
+  .scalable{ background: var(--ink); color: var(--paper); }
+  .scalable-inner{ display:flex; align-items:center; justify-content:space-between; gap: 40px; flex-wrap: wrap; }
+  .scalable h2{ font-size: clamp(26px, 3.4vw, 40px); max-width: 460px; color: var(--paper); }
+  .scale-points{ display:flex; gap: 48px; flex-wrap:wrap; }
+  .scale-point{ max-width: 170px; }
+  .scale-point .num{ font-family:'Archivo Black', sans-serif; font-size: 38px; color: var(--red); margin-bottom: 6px; }
+  .scale-point .label{ font-size: 13px; color: #C9C7BB; line-height:1.5; }
+
+  footer{ border-top: 3px solid var(--ink); padding: 48px 0; }
+  .footer-row{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px; }
+  .footer-links{ display:flex; gap:28px; list-style:none; }
+  .footer-links a{ font-size:13px; text-transform:uppercase; letter-spacing:0.05em; font-weight:600; color: var(--ink); }
+  .footer-links a:hover{ color: var(--red); }
+  .footer-note{ font-size: 13px; color: var(--ink-dim); margin-top: 24px; }
+
+  @media (max-width: 860px){
+    .nav-links{
+      position: fixed; top:0; right:0; bottom:0;
+      width: 66vw; max-width: 280px;
+      background: var(--paper);
+      flex-direction: column; justify-content: center; gap: 26px;
+      padding: 32px;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      border-left: 3px solid var(--ink);
+    }
+    .nav-links.open{ transform: translateX(0); }
+    .nav-toggle{ display:flex; flex-direction:column; gap:5px; width:28px; background:none; border:0; cursor:pointer; z-index:60; }
+    .nav-toggle span{ height:2px; background: var(--ink); width:100%; display:block; }
+    .services{ grid-template-columns: 1fr; }
+    .service-card + .service-card{ border-left:0; border-top: 3px solid var(--ink); }
+    section{ padding: 72px 0; }
+    .scalable-inner{ flex-direction:column; align-items:flex-start; }
+  }
+  @media (max-width: 560px){
+    .wrap{ padding: 0 20px; }
+    nav.wrap{ padding: 18px 20px; }
+    .service-card{ padding: 28px; }
+    .vf-tag.tc{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a class="brand" href="/"><span class="rec"></span>Green River Pictures</a>
+    <button class="nav-toggle" aria-label="Toggle menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true">
+      <video autoplay muted loop playsinline preload="auto">
+        <source src="assets/grpny-hero-bg.mp4" type="video/mp4">
+      </video>
+    </div>
+    <span class="vf-corner vf-tl"></span>
+    <span class="vf-corner vf-tr"></span>
+    <span class="vf-corner vf-bl"></span>
+    <span class="vf-corner vf-br"></span>
+    <span class="vf-tag rec-tag"><span class="rec"></span>REC</span>
+    <span class="vf-tag tc mono" id="live-clock">00:00:00</span>
+    <div class="wrap">
+      <h1>Scalable production for <span class="hl">branding films</span> &amp; live events</h1>
+      <p class="hero-lede">From solo-shooter documentary-style branding films to full-crew multicam broadcasts, we scale the production to match the project — without sacrificing quality.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="contact.html">Start a project</a>
+        <a class="btn btn-ghost" href="#services">See services</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Three disciplines, one crew</h2>
+        <p>Branding films, live events, and international production require different skill sets — we run all three under one roof, so your visual identity stays consistent across everything we shoot.</p>
+      </div>
+
+      <div class="services">
+        <div class="service-card">
+          <span class="service-num">01 / BRANDING FILMS</span>
+          <h3>Documentary-style branding</h3>
+          <p>Authentic, character-driven films that tell your company's story the way a documentary would. Shot, directed, and often produced solo for lean, fast-moving productions.</p>
+          <ul class="service-list">
+            <li>Company &amp; founder story films</li>
+            <li>Product and campaign documentaries</li>
+            <li>Interview-driven brand content</li>
+          </ul>
+        </div>
+
+        <div class="service-card">
+          <span class="service-num">02 / LIVE EVENTS</span>
+          <h3>Multicam live production</h3>
+          <p>Professional multicam coverage for ceremonies, summits, and graduations — cinema cameras, 21' camera jib, drone, PTZ camera control, live switching, and redundant streaming built for events that only happen once.</p>
+          <ul class="service-list">
+            <li>Multicam coverage</li>
+            <li>Live-switched broadcast with on-site director</li>
+            <li>Redundant dual-path streaming</li>
+          </ul>
+        </div>
+
+        <div class="service-card">
+          <span class="service-num">03 / GLOBAL PRODUCTION</span>
+          <h3>International travel experience</h3>
+          <p>Years of production work across five continents means navigating customs, local crews, and shifting logistics is second nature, not a first-time challenge. Fully insured internationally, with commercial drone licensing in both the US and EU, productions move across borders efficiently.</p>
+          <ul class="service-list">
+            <li>EU &amp; US licensed commercial drone operation</li>
+            <li>Self-produced, single-operator shoots on tight international timelines</li>
+            <li>Secure HD feeds for remote, virtual on-set clients</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="scalable">
+    <div class="wrap scalable-inner">
+      <h2>Built to scale up or down</h2>
+      <div class="scale-points">
+        <div class="scale-point">
+          <div class="num" data-count="1">0</div>
+          <div class="label">production professional is often all it takes — fully insured, self-produced and directed</div>
+        </div>
+        <div class="scale-point">
+          <div class="num" data-count="20" data-suffix="+">0</div>
+          <div class="label">years producing branding films and multicam broadcasts</div>
+        </div>
+        <div class="scale-point">
+          <div class="num" data-count="2">0</div>
+          <div class="label">continents licensed for commercial drone operation — US &amp; EU</div>
+        </div>
+        <div class="scale-point">
+          <div class="num" data-count="5">0</div>
+          <div class="label">continents traveled to produce award-winning content</div>
+        </div>
+        <div class="scale-point">
+          <div class="num" data-count="5040" data-suffix="+">0</div>
+          <div class="label">cups of coffee consumed — 21 workdays/mo × 20 years, and counting</div>
+        </div>
+        <div class="scale-point">
+          <div class="num" data-count="800" data-suffix=" TB">0</div>
+          <div class="label">of visual data recorded, and counting</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-row">
+      <span class="brand"><span class="rec"></span>Green River Pictures</span>
+      <ul class="footer-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <p class="footer-note">&copy; <span id="year"></span> Green River Pictures, LLC. Scalable production for branding films &amp; live events.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Live running clock, 24-hour time, in the hero's timecode readout
+  (function(){
+    var clockEl = document.getElementById('live-clock');
+    if (!clockEl) return;
+    function pad(n){ return String(n).padStart(2, '0'); }
+    function tick(){
+      var now = new Date();
+      clockEl.textContent = pad(now.getHours()) + ':' + pad(now.getMinutes()) + ':' + pad(now.getSeconds());
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+
+  // Count up each stat rapidly the first time it scrolls into view
+  (function(){
+    var nums = document.querySelectorAll('.scale-point .num');
+    if (!nums.length) return;
+
+    function animateCount(el){
+      var target = parseInt(el.dataset.count, 10) || 0;
+      var suffix = el.dataset.suffix || '';
+      var duration = 900;
+      var start = null;
+
+      function step(ts){
+        if (!start) start = ts;
+        var progress = Math.min((ts - start) / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+        var current = Math.floor(eased * target);
+        el.textContent = current.toLocaleString() + suffix;
+        if (progress < 1){
+          requestAnimationFrame(step);
+        } else {
+          el.textContent = target.toLocaleString() + suffix;
+        }
+      }
+      requestAnimationFrame(step);
+    }
+
+    if ('IntersectionObserver' in window){
+      var observer = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if (entry.isIntersecting){
+            animateCount(entry.target);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+      nums.forEach(function(el){ observer.observe(el); });
+    } else {
+      // Fallback: no IntersectionObserver support, just show final values
+      nums.forEach(function(el){
+        el.textContent = (parseInt(el.dataset.count, 10) || 0).toLocaleString() + (el.dataset.suffix || '');
+      });
+    }
+  })();
+</script>
+
+</body>
+</html>
